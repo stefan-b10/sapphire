@@ -1,20 +1,29 @@
-import { NearBindgen, near, call, view, initialize } from "near-sdk-js";
+import { NearBindgen, near, call, view, initialize, Vector } from "near-sdk-js";
 
 @NearBindgen({ requireInit: true })
 class ResumeContract {
-	firstName: string;
-	lastName: string;
-	email: string;
-	phoneNumber: number;
+	firstName: string = "";
+	lastName: string = "";
+	email: string = "";
+	phoneNumber: number = 0;
+	education: Vector<string> = new Vector<string>("education");
 
-	@initialize({ privateFunction: true })
-	init(
-		{ firstName }: { firstName: string },
-		{ lastName }: { lastName: string }
-	) {
-		this.firstName = firstName;
-		this.lastName = lastName;
-	}
+	// constructor() {
+	// 	this.firstName = "";
+	// 	this.lastName = "";
+	// 	this.email = "";
+	// 	this.phoneNumber = 0;
+	// 	this.education = new Vector<string>("education");
+	// }
+
+	// @initialize({ privateFunction: true })
+	// init(
+	// 	{ firstName }: { firstName: string },
+	// 	{ lastName }: { lastName: string }
+	// ) {
+	// 	this.firstName = firstName;
+	// 	this.lastName = lastName;
+	// }
 
 	// Name functions
 	@view({})
@@ -57,6 +66,19 @@ class ResumeContract {
 	@call({ privateFunction: true })
 	set_phone_number({ phoneNumber }: { phoneNumber: number }) {
 		this.phoneNumber = phoneNumber;
-    }
-    
+	}
+
+	// Education functions
+
+	@view({})
+	get_education(): Vector<string> {
+		return this.education;
+	}
+
+	@call({ privateFunction: true })
+	add_education({ education }: { education: Vector<string> }) {
+		for (let i = 0; i < education.length; i++) {
+			this.education.push(education[i]);
+		}
+	}
 }

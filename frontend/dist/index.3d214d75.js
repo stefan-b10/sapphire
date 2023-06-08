@@ -2949,7 +2949,7 @@ var _app = require("./App");
 var _appDefault = parcelHelpers.interopDefault(_app);
 // NEAR
 var _nearWallet = require("./near-wallet");
-const CONTRACT_ADDRESS = "dev-1685514409339-63548806164171";
+const CONTRACT_ADDRESS = "dev-1686214649321-39750816991474";
 // When creating the wallet you can optionally ask to create an access key
 // Having the key enables to call non-payable methods without interrupting the user to sign
 const wallet = new (0, _nearWallet.Wallet)({

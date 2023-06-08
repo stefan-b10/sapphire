@@ -1,15 +1,15 @@
 22624
-81/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/dist/index.bc0daea6.css.map1685515620476763725 0
+81/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/dist/index.bc0daea6.css.map1686208285675026890 0
 83/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/dist/ledger-icon.6810c08e.png1685515725060745352 0
-83/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/dist/ledger-icon.a0186cc1.png1685515620476763725 0
+83/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/dist/ledger-icon.a0186cc1.png1686208285671026700 0
 91/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/dist/my-near-wallet-icon.b1d90af2.png1685515723732696261 0
-82/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/dist/logo-black.4514ed42.svg1685515620476763725 0
-69/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/dist/index.html1685515620476763725 0
-79/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/dist/favicon.eee7a1e8.ico1685515620444762466 0
-91/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/dist/my-near-wallet-icon.ebfed669.png1685515620476763725 0
+82/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/dist/logo-black.4514ed42.svg1686208285667026509 0
+69/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/dist/index.html1686208285667026509 0
+79/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/dist/favicon.eee7a1e8.ico1686208285663026317 0
+91/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/dist/my-near-wallet-icon.ebfed669.png1686208285827034154 0
 82/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/dist/logo-white.605d2742.svg1685515725376757026 0
-82/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/dist/logo-white.a7716062.svg1685515620476763725 0
-58/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/dist1685515725376757026 1
+82/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/dist/logo-white.a7716062.svg1686208285691027655 0
+58/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/dist1686224769178319181 1
 84/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/node_modules/bs58/package.json1685515645321733107 0
 81/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/node_modules/bs58/README.md1685515645369734964 0
 80/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/node_modules/bs58/index.js1685515645465738678 0
@@ -4046,7 +4046,7 @@
 118/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/node_modules/lmdb/dependencies/lmdb/libraries/liblmdb/mdb_load.11685515646861792664 0
 119/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/node_modules/@babel/plugin-transform-arrow-functions/package.json1685515645757749975 0
 140/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/node_modules/@ledgerhq/devices/node_modules/rxjs/_esm2015/internal/util/isArray.js.map1685515649573897400 0
-71/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/package-lock.json1685515651365966506 0
+71/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/package-lock.json1686225007655469453 0
 124/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/node_modules/@ledgerhq/devices/node_modules/rxjs/operator/share.js.map1685515649805906352 0
 116/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/node_modules/@ledgerhq/devices/node_modules/rxjs/internal/util1685515650517933814 1
 114/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/node_modules/@walletconnect/utils/dist/types/namespaces.d.ts1685515647257807967 0
@@ -6042,7 +6042,7 @@
 112/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/node_modules/@parcel/reporter-cli/node_modules/ansi-styles1685515645609744249 1
 126/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/node_modules/rxjs/dist/types/internal/operators/publishBehavior.d.ts.map1685515649505894776 0
 110/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/node_modules/rxjs/dist/esm5/internal/util/isArrayLike.js1685515648661862198 0
-71/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/node_modules/@swc1685515651213960647 1
+71/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/node_modules/@swc1686225007535464937 1
 138/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/node_modules/@ledgerhq/devices/node_modules/rxjs/internal/operators/concatMapTo.d.ts1685515650153919778 0
 108/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/node_modules/@babel/core/lib/config/resolve-targets.js1685515647341811213 0
 124/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/node_modules/csso/node_modules/css-tree/lib/syntax/node/Parentheses.js1685515648373851078 0
@@ -7155,7 +7155,7 @@
 138/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/node_modules/@web3modal/ui/dist/_types/src/partials/w3m-connector-waiting/index.d.ts1685515647781828215 0
 101/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/node_modules/caniuse-lite/data/features/wasm.js1685515648961873783 0
 112/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/node_modules/@walletconnect/time/dist/esm/utils/convert.js1685515645989758951 0
-66/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/node_modules1685515651417968510 1
+66/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/node_modules1686225007535464937 1
 150/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/node_modules/@ledgerhq/devices/node_modules/rxjs/internal/operators/distinctUntilKeyChanged.d.ts1685515650201921628 0
 121/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/node_modules/@ledgerhq/devices/node_modules/rxjs/operator/single.js1685515648997875172 0
 71/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/node_modules/flat1685515645937756939 1
@@ -8889,7 +8889,7 @@
 119/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/node_modules/@babel/plugin-transform-react-display-name/README.md1685515645405736357 0
 88/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/node_modules/imurmurhash/README.md1685515645369734964 0
 108/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/node_modules/caniuse-lite/data/features/geolocation.js1685515648557858183 0
-84/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/node_modules/@msgpackr-extract1685515651213960647 1
+84/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/node_modules/@msgpackr-extract1686225007535464937 1
 97/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/node_modules/@parcel/core/lib/loadDotEnv.js1685515647849830841 0
 110/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/node_modules/caniuse-lite/data/features/input-pattern.js1685515648653861889 0
 92/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/node_modules/regenerator-transform/src1685515646473777663 1
@@ -9456,7 +9456,7 @@
 92/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/node_modules/workerpool/dist/worker.js1685515646305771168 0
 88/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/node_modules/error-ex/package.json1685515645317732952 0
 81/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/node_modules/@parcel/fs/lib1685515646745788180 1
-85/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/node_modules/.package-lock.json1685515651417968510 0
+85/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/node_modules/.package-lock.json1686225007711471560 0
 96/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/node_modules/msgpackr-extract/node_modules1685515650761943223 1
 90/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/node_modules/function-bind/README.md1685515645461738523 0
 119/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/node_modules/@walletconnect/heartbeat/dist/cjs/constants/index.js1685515646521779519 0
@@ -9753,7 +9753,7 @@
 124/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/node_modules/@ledgerhq/devices/node_modules/rxjs/add/operator/audit.js1685515647621822032 0
 137/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/node_modules/@parcel/optimizer-svgo/node_modules/css-tree/lib/syntax/node/String.js1685515647989836250 0
 110/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/node_modules/lit-html/development/private-ssr-support.js1685515647549819251 0
-76/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/dist/index.3d214d75.js1685515620460763096 0
+76/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/dist/index.3d214d75.js1686224769150318082 0
 115/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/node_modules/regenerate-unicode-properties/Script/Ol_Chiki.js1685515648237845827 0
 126/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/node_modules/@parcel/node-resolver-core/node_modules/semver/package.json1685515645917756165 0
 116/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/node_modules/@walletconnect/relay-auth/dist/cjs/constants.d.ts1685515646917794828 0
@@ -12110,7 +12110,7 @@
 90/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/node_modules/pino/test/mixin.test.js1685515647601821260 0
 98/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/node_modules/posthtml-render/dist/index.d.ts1685515646021760188 0
 107/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/node_modules/csso/node_modules/css-tree/lib/generator1685515648453854167 1
-80/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/dist/index.3d214d75.js.map1685515620476763725 0
+80/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/dist/index.3d214d75.js.map1686224769174319024 0
 104/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/node_modules/@babel/plugin-transform-typeof-symbol1685515645581743166 1
 117/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/node_modules/rxjs/dist/types/internal/scheduler/Action.d.ts.map1685515649025876253 0
 127/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/node_modules/@nightlylabs/connect-near/lib/nightlyConnect/connect/sdk/src1685515647105802096 1
@@ -13662,7 +13662,7 @@
 142/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/node_modules/@ledgerhq/devices/node_modules/rxjs/_esm5/internal/operators/windowCount.js1685515649177882119 0
 130/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/node_modules/regenerate-unicode-properties/Binary_Property/Case_Ignorable.js1685515646945795912 0
 95/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/node_modules/react/react.shared-subset.js1685515646729787562 0
-77/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/dist/index.bc0daea6.css1685515620476763725 0
+77/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/dist/index.bc0daea6.css1686208285663026317 0
 99/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/node_modules/qrcode/helper/to-sjis-browser.js1685515646889793746 0
 86/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/node_modules/cross-spawn/LICENSE1685515645317732952 0
 88/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/node_modules/@stablelib/int/int.ts1685515646137764673 0
@@ -20703,7 +20703,7 @@
 97/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/node_modules/safe-stable-stringify/index.js1685515645441737750 0
 96/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/node_modules/@web3modal/ui/dist/_types/src1685515647929833933 1
 101/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/node_modules/safe-stable-stringify/package.json1685515645865754153 0
-72/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/node_modules/@lmdb1685515651213960647 1
+72/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/node_modules/@lmdb1686225007535464937 1
 110/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/node_modules/@lmdb/lmdb-linux-x64/node.abi108.glibc.node1685515646797790189 0
 107/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/node_modules/@lmdb/lmdb-linux-x64/node.napi.musl.node1685515648089840113 0
 94/home/stef/Desktop/web3/sprintfolio/sapphire/frontend/node_modules/domelementtype/lib/index.js1685515645793751368 0
