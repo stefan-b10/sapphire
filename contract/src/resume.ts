@@ -1,29 +1,30 @@
-import { NearBindgen, near, call, view, initialize, Vector } from "near-sdk-js";
+import { NearBindgen, near, call, view, Vector } from "near-sdk-js";
 
-@NearBindgen({ requireInit: true })
-class ResumeContract {
+type Education = {
+	school: string;
+	degree: string;
+	fieldOfStudy: string;
+	startYear: number;
+	endYear: number;
+};
+
+type WorkExperience = {
+	position: string;
+	company: string;
+	location: string;
+	description: string;
+	startYear: number;
+	endYear: number;
+};
+
+@NearBindgen({})
+class Resume {
 	firstName: string = "";
 	lastName: string = "";
 	email: string = "";
 	phoneNumber: number = 0;
-	education: Vector<string> = new Vector<string>("education");
-
-	// constructor() {
-	// 	this.firstName = "";
-	// 	this.lastName = "";
-	// 	this.email = "";
-	// 	this.phoneNumber = 0;
-	// 	this.education = new Vector<string>("education");
-	// }
-
-	// @initialize({ privateFunction: true })
-	// init(
-	// 	{ firstName }: { firstName: string },
-	// 	{ lastName }: { lastName: string }
-	// ) {
-	// 	this.firstName = firstName;
-	// 	this.lastName = lastName;
-	// }
+	education: Vector<Education> = new Vector<Education>("education");
+	experience: Vector<WorkExperience> = new Vector<WorkExperience>("experience");
 
 	// Name functions
 	@view({})
@@ -69,16 +70,24 @@ class ResumeContract {
 	}
 
 	// Education functions
-
 	@view({})
-	get_education(): Vector<string> {
-		return this.education;
+	get_education({}): Array<Education> {
+		return this.education.toArray();
 	}
 
 	@call({ privateFunction: true })
-	add_education({ education }: { education: Vector<string> }) {
-		for (let i = 0; i < education.length; i++) {
-			this.education.push(education[i]);
-		}
+	add_education({ education }: { education: Education }) {
+		this.education.push(education);
+	}
+
+	// Experience functions
+	@view({})
+	get_experience({}): Array<WorkExperience> {
+		return this.experience.toArray();
+	}
+
+	@call({ privateFunction: true })
+	add_experience({ experience }: { experience: WorkExperience }) {
+		this.experience.push(experience);
 	}
 }
