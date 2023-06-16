@@ -3,7 +3,7 @@
 }
 
 html {
-  --bg: #efefef;
+  --bg: #1f1725;
   --fg: #1e1e1e;
   --gray: #555;
   --light-gray: #ccc;
@@ -25,35 +25,66 @@ body {
 }
 
 main {
+  border: 2px #f6f9fc;
+  border-radius: 8px;
+  padding: 20px;
   margin: 0 auto;
   max-width: 26em;
 }
 
-main.please-wait {
-}
+/* main.please-wait {
+} */
+
 
 h1 {
-  background-image: url(./logo-black.svg);
-  background-position: center 1em;
-  background-repeat: no-repeat;
-  background-size: auto 1.5em;
+  color: #efefef;
+  /* background-position: center 1em; */
+  /* background-repeat: no-repeat; */
+  /* background-size: auto 3.5em; */
   margin-top: 0;
-  padding: 3.5em 0 0;
+  padding: 0.3em 0.75em;
   text-align: center;
-  font-size: 1.5em;
+  font-size: 1em;
 }
+
+button, input {
+  font: inherit;
+  outline: none;
+}
+
+button {
+  background-color: var(--secondary);
+  border-radius: 5px;
+  border: none;
+  color: #efefef;
+  cursor: pointer;
+  padding: 0.3em 0.75em;
+  transition: transform 30ms;
+}
+button:hover, button:focus {
+  box-shadow: 0 0 10em rgba(255, 255, 255, 0.2) inset;
+}
+
+/*
 .greeting {
   color: var(--secondary);
   text-decoration: underline;
 }
+*/
+
+/*
 h2 {
   text-align: center;
 }
+*/
 
+/*
 .please-wait .change {
   pointer-events: none;
 }
+*/
 
+/*
 ul.information  {
   margin: 2em 0 2em 0;
   padding: 0;
@@ -61,6 +92,9 @@ ul.information  {
   font-size: 0.8em;
 
 }
+*/
+
+/*
 .information li:first-child {
   border-top: 1px solid var(--light-gray);
 }
@@ -118,10 +152,6 @@ a:active,
   color: var(--secondary);
 }
 
-button, input {
-  font: inherit;
-  outline: none;
-}
 main.please-wait .change button {
   position: relative;
   pointer-events: none;
@@ -130,18 +160,11 @@ main.please-wait .change button {
 main.please-wait .change button span {
   visibility: hidden;
 }
-button {
-  background-color: var(--secondary);
-  border-radius: 5px;
-  border: none;
-  color: #efefef;
-  cursor: pointer;
-  padding: 0.3em 0.75em;
-  transition: transform 30ms;
-}
-button:hover, button:focus {
-  box-shadow: 0 0 10em rgba(255, 255, 255, 0.2) inset;
-}
+*/
+
+
+
+/*
 input {
   background-color: var(--light-gray);
   border: none;
@@ -161,12 +184,16 @@ input:focus {
 code {
   color: var(--gray);
 }
+*/
 
+/*
 li {
   padding-bottom: 1em;
 }
+*/
 
-@media (prefers-color-scheme: dark) {
+
+/* @media (prefers-color-scheme: dark) {
   html {
     --bg: #1e1e1e;
     --fg: #efefef;
@@ -175,13 +202,14 @@ li {
     --light-gray: #444;
   }
   h1 {
-    background-image: url(./logo-white.svg);
+    background-image: url(./logo-white.png);
   }
   input:focus {
     box-shadow: 0 0 10em rgba(255, 255, 255, 0.02) inset;
   }
-}
+} */
 
+/*
 main.please-wait .loader,
 main.please-wait .loader:after{
   display: inline-block;
@@ -229,3 +257,4 @@ main.please-wait .loader:after{
     transform: rotate(360deg);
   }
 }
+*/

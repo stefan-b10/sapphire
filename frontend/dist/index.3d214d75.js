@@ -2949,7 +2949,7 @@ var _app = require("./App");
 var _appDefault = parcelHelpers.interopDefault(_app);
 // NEAR
 var _nearWallet = require("./near-wallet");
-const CONTRACT_ADDRESS = "dev-1686214649321-39750816991474";
+const CONTRACT_ADDRESS = "dev-1686901810982-82680609923268";
 // When creating the wallet you can optionally ask to create an access key
 // Having the key enables to call non-payable methods without interrupting the user to sign
 const wallet = new (0, _nearWallet.Wallet)({
@@ -2967,7 +2967,7 @@ window.onload = async ()=>{
     }, void 0, false, {
         fileName: "index.js",
         lineNumber: 21,
-        columnNumber: 5
+        columnNumber: 3
     }, undefined));
 };
 
@@ -27184,140 +27184,95 @@ function App({ isSignedIn , contractId , wallet  }) {
     const [uiPleaseWait, setUiPleaseWait] = (0, _reactDefault.default).useState(true);
     // Get blockchian state once on component load
     (0, _reactDefault.default).useEffect(()=>{
-        getGreeting().then(setValueFromBlockchain).catch(alert).finally(()=>{
-            setUiPleaseWait(false);
-        });
+    // getGreeting()
+    //   .then(setValueFromBlockchain)
+    //   .catch(alert)
+    //   .finally(() => {
+    //     setUiPleaseWait(false);
+    //   });
     }, []);
-    /// If user not signed-in with wallet - show prompt
-    if (!isSignedIn) // Sign-in flow will reload the page later
-    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _uiComponents.SignInPrompt), {
-        greeting: valueFromBlockchain,
-        onClick: ()=>wallet.signIn()
-    }, void 0, false, {
-        fileName: "App.js",
-        lineNumber: 28,
-        columnNumber: 12
-    }, this);
-    function changeGreeting(e) {
-        e.preventDefault();
-        setUiPleaseWait(true);
-        const { greetingInput  } = e.target.elements;
-        // use the wallet to send the greeting to the contract
-        wallet.callMethod({
-            method: "set_greeting",
-            args: {
-                message: greetingInput.value
-            },
-            contractId
-        }).then(async ()=>{
-            return getGreeting();
-        }).then(setValueFromBlockchain).finally(()=>{
-            setUiPleaseWait(false);
-        });
-    }
-    function getGreeting() {
-        // use the wallet to query the contract's greeting
-        return wallet.viewMethod({
-            method: "get_greeting",
-            contractId
-        });
-    }
-    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+    /*
+	/// If user not signed-in with wallet - show prompt
+	if (!isSignedIn) {
+		// Sign-in flow will reload the page later
+		return (
+			<SignInPrompt
+				greeting={valueFromBlockchain}
+				onClick={() => wallet.signIn()}
+			/>
+		);
+	}
+  */ /*
+  function changeGreeting(e) {
+    e.preventDefault();
+    setUiPleaseWait(true);
+    const { greetingInput } = e.target.elements;
+    
+    // use the wallet to send the greeting to the contract
+    wallet.callMethod({ method: 'set_greeting', args: { message: greetingInput.value }, contractId })
+      .then(async () => {return getGreeting();})
+      .then(setValueFromBlockchain)
+      .finally(() => {
+        setUiPleaseWait(false);
+      });
+  }
+
+  function getGreeting(){
+    // use the wallet to query the contract's greeting
+    return wallet.viewMethod({ method: 'get_greeting', contractId })
+  }
+  */ return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
         children: [
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _uiComponents.SignOutButton), {
-                accountId: wallet.accountId,
-                onClick: ()=>wallet.signOut()
-            }, void 0, false, {
-                fileName: "App.js",
-                lineNumber: 52,
-                columnNumber: 7
-            }, this),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("main", {
-                className: uiPleaseWait ? "please-wait" : "",
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("header", {
+                style: {
+                    display: "flex",
+                    justifyContent: "space-between",
+                    padding: "10px"
+                },
                 children: [
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
-                        children: [
-                            "The contract says: ",
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                                className: "greeting",
-                                children: valueFromBlockchain
-                            }, void 0, false, {
-                                fileName: "App.js",
-                                lineNumber: 55,
-                                columnNumber: 30
-                            }, this)
-                        ]
-                    }, void 0, true, {
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _uiComponents.Header), {}, void 0, false, {
                         fileName: "App.js",
-                        lineNumber: 54,
-                        columnNumber: 9
+                        lineNumber: 66,
+                        columnNumber: 5
                     }, this),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("form", {
-                        onSubmit: changeGreeting,
-                        className: "change",
-                        children: [
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
-                                children: "Change greeting:"
-                            }, void 0, false, {
-                                fileName: "App.js",
-                                lineNumber: 58,
-                                columnNumber: 11
-                            }, this),
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                children: [
-                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
-                                        autoComplete: "off",
-                                        defaultValue: valueFromBlockchain,
-                                        id: "greetingInput"
-                                    }, void 0, false, {
-                                        fileName: "App.js",
-                                        lineNumber: 60,
-                                        columnNumber: 13
-                                    }, this),
-                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
-                                        children: [
-                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                                                children: "Save"
-                                            }, void 0, false, {
-                                                fileName: "App.js",
-                                                lineNumber: 66,
-                                                columnNumber: 15
-                                            }, this),
-                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                                className: "loader"
-                                            }, void 0, false, {
-                                                fileName: "App.js",
-                                                lineNumber: 67,
-                                                columnNumber: 15
-                                            }, this)
-                                        ]
-                                    }, void 0, true, {
-                                        fileName: "App.js",
-                                        lineNumber: 65,
-                                        columnNumber: 13
-                                    }, this)
-                                ]
-                            }, void 0, true, {
-                                fileName: "App.js",
-                                lineNumber: 59,
-                                columnNumber: 11
-                            }, this)
-                        ]
-                    }, void 0, true, {
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        children: isSignedIn ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _uiComponents.SignOutButton), {
+                            accountId: wallet.accountId,
+                            onClick: ()=>wallet.signOut()
+                        }, void 0, false, {
+                            fileName: "App.js",
+                            lineNumber: 69,
+                            columnNumber: 7
+                        }, this) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _uiComponents.SignInPrompt), {
+                            onClick: ()=>wallet.signIn()
+                        }, void 0, false, {
+                            fileName: "App.js",
+                            lineNumber: 74,
+                            columnNumber: 7
+                        }, this)
+                    }, void 0, false, {
                         fileName: "App.js",
-                        lineNumber: 57,
-                        columnNumber: 9
-                    }, this),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _uiComponents.EducationalText), {}, void 0, false, {
-                        fileName: "App.js",
-                        lineNumber: 71,
-                        columnNumber: 9
+                        lineNumber: 67,
+                        columnNumber: 5
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "App.js",
-                lineNumber: 53,
-                columnNumber: 7
+                lineNumber: 59,
+                columnNumber: 4
+            }, this),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("main", {
+                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
+                    children: "Sign out / Sign in"
+                }, void 0, false, {
+                    fileName: "App.js",
+                    lineNumber: 79,
+                    columnNumber: 5
+                }, this)
+            }, void 0, false, {
+                fileName: "App.js",
+                lineNumber: 78,
+                columnNumber: 4
             }, this)
         ]
     }, void 0, true);
@@ -27928,83 +27883,56 @@ $parcel$ReactRefreshHelpers$38d8.prelude(module);
 try {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "Header", ()=>Header);
 parcelHelpers.export(exports, "SignInPrompt", ()=>SignInPrompt);
 parcelHelpers.export(exports, "SignOutButton", ()=>SignOutButton);
-parcelHelpers.export(exports, "EducationalText", ()=>EducationalText);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
-function SignInPrompt({ greeting , onClick  }) {
-    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("main", {
-        children: [
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
-                children: [
-                    "The contract says: ",
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        className: "greeting",
-                        children: greeting
-                    }, void 0, false, {
-                        fileName: "ui-components.js",
-                        lineNumber: 7,
-                        columnNumber: 28
-                    }, this)
-                ]
-            }, void 0, true, {
-                fileName: "ui-components.js",
-                lineNumber: 6,
-                columnNumber: 7
-            }, this),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h3", {
-                children: "Welcome to NEAR!"
-            }, void 0, false, {
-                fileName: "ui-components.js",
-                lineNumber: 9,
-                columnNumber: 7
-            }, this),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
-                children: "Your contract is storing a greeting message in the NEAR blockchain. To change it you need to sign in using the NEAR Wallet. It is very simple, just use the button below."
-            }, void 0, false, {
-                fileName: "ui-components.js",
-                lineNumber: 12,
-                columnNumber: 7
-            }, this),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
-                children: 'Do not worry, this app runs in the test network ("testnet"). It works just like the main network ("mainnet"), but using NEAR Tokens that are only for testing!'
-            }, void 0, false, {
-                fileName: "ui-components.js",
-                lineNumber: 17,
-                columnNumber: 7
-            }, this),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
-                fileName: "ui-components.js",
-                lineNumber: 22,
-                columnNumber: 7
-            }, this),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+var _logoPng = require("./assets/logo.png");
+var _logoPngDefault = parcelHelpers.interopDefault(_logoPng);
+function Header() {
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("header", {
+        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+            className: "logo",
+            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
+                src: (0, _logoPngDefault.default),
+                alt: "Logo",
                 style: {
-                    textAlign: "center"
-                },
-                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
-                    onClick: onClick,
-                    children: "Sign in with NEAR Wallet"
-                }, void 0, false, {
-                    fileName: "ui-components.js",
-                    lineNumber: 24,
-                    columnNumber: 9
-                }, this)
+                    width: "150px",
+                    height: "100px"
+                }
             }, void 0, false, {
                 fileName: "ui-components.js",
-                lineNumber: 23,
-                columnNumber: 7
+                lineNumber: 8,
+                columnNumber: 5
             }, this)
-        ]
-    }, void 0, true, {
+        }, void 0, false, {
+            fileName: "ui-components.js",
+            lineNumber: 7,
+            columnNumber: 4
+        }, this)
+    }, void 0, false, {
         fileName: "ui-components.js",
-        lineNumber: 5,
-        columnNumber: 5
+        lineNumber: 6,
+        columnNumber: 3
     }, this);
 }
-_c = SignInPrompt;
+_c = Header;
+function SignInPrompt({ onClick  }) {
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+        style: {
+            float: "right"
+        },
+        onClick: onClick,
+        children: "Sign in with NEAR Wallet"
+    }, void 0, false, {
+        fileName: "ui-components.js",
+        lineNumber: 20,
+        columnNumber: 3
+    }, this);
+}
+_c1 = SignInPrompt;
 function SignOutButton({ accountId , onClick  }) {
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
         style: {
@@ -28017,190 +27945,60 @@ function SignOutButton({ accountId , onClick  }) {
         ]
     }, void 0, true, {
         fileName: "ui-components.js",
-        lineNumber: 32,
-        columnNumber: 5
+        lineNumber: 28,
+        columnNumber: 3
     }, this);
 }
-_c1 = SignOutButton;
-function EducationalText() {
-    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
-        children: [
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
-                children: "Look at that! A Hello World app! This greeting is stored on the NEAR blockchain. Check it out:"
-            }, void 0, false, {
-                fileName: "ui-components.js",
-                lineNumber: 41,
-                columnNumber: 7
-            }, this),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("ol", {
-                children: [
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
-                        children: [
-                            "Look in ",
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("code", {
-                                children: "frontend/App.js"
-                            }, void 0, false, {
-                                fileName: "ui-components.js",
-                                lineNumber: 46,
-                                columnNumber: 19
-                            }, this),
-                            " - you'll see ",
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("code", {
-                                children: "getGreeting"
-                            }, void 0, false, {
-                                fileName: "ui-components.js",
-                                lineNumber: 46,
-                                columnNumber: 61
-                            }, this),
-                            " and ",
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("code", {
-                                children: "setGreeting"
-                            }, void 0, false, {
-                                fileName: "ui-components.js",
-                                lineNumber: 46,
-                                columnNumber: 90
-                            }, this),
-                            " being called on ",
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("code", {
-                                children: "contract"
-                            }, void 0, false, {
-                                fileName: "ui-components.js",
-                                lineNumber: 46,
-                                columnNumber: 131
-                            }, this),
-                            ". What's this?"
-                        ]
-                    }, void 0, true, {
-                        fileName: "ui-components.js",
-                        lineNumber: 45,
-                        columnNumber: 9
-                    }, this),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
-                        children: [
-                            "Ultimately, this ",
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("code", {
-                                children: "contract"
-                            }, void 0, false, {
-                                fileName: "ui-components.js",
-                                lineNumber: 49,
-                                columnNumber: 28
-                            }, this),
-                            " code is defined in ",
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("code", {
-                                children: "./contract"
-                            }, void 0, false, {
-                                fileName: "ui-components.js",
-                                lineNumber: 49,
-                                columnNumber: 69
-                            }, this),
-                            " – this is the source code for your ",
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("a", {
-                                target: "_blank",
-                                rel: "noreferrer",
-                                href: "https://docs.near.org/docs/develop/contracts/overview",
-                                children: "smart contract"
-                            }, void 0, false, {
-                                fileName: "ui-components.js",
-                                lineNumber: 49,
-                                columnNumber: 128
-                            }, this),
-                            "."
-                        ]
-                    }, void 0, true, {
-                        fileName: "ui-components.js",
-                        lineNumber: 48,
-                        columnNumber: 9
-                    }, this),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
-                        children: [
-                            "When you run ",
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("code", {
-                                children: "npm run deploy"
-                            }, void 0, false, {
-                                fileName: "ui-components.js",
-                                lineNumber: 51,
-                                columnNumber: 24
-                            }, this),
-                            ", the code in ",
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("code", {
-                                children: "./contract"
-                            }, void 0, false, {
-                                fileName: "ui-components.js",
-                                lineNumber: 51,
-                                columnNumber: 65
-                            }, this),
-                            " gets deployed to the NEAR testnet. You can see how this happens by looking in ",
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("code", {
-                                children: "package.json"
-                            }, void 0, false, {
-                                fileName: "ui-components.js",
-                                lineNumber: 51,
-                                columnNumber: 167
-                            }, this),
-                            "."
-                        ]
-                    }, void 0, true, {
-                        fileName: "ui-components.js",
-                        lineNumber: 50,
-                        columnNumber: 9
-                    }, this)
-                ]
-            }, void 0, true, {
-                fileName: "ui-components.js",
-                lineNumber: 44,
-                columnNumber: 7
-            }, this),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("hr", {}, void 0, false, {
-                fileName: "ui-components.js",
-                lineNumber: 53,
-                columnNumber: 7
-            }, this),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
-                children: [
-                    "To keep learning, check out ",
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("a", {
-                        target: "_blank",
-                        rel: "noreferrer",
-                        href: "https://docs.near.org",
-                        children: "the NEAR docs"
-                    }, void 0, false, {
-                        fileName: "ui-components.js",
-                        lineNumber: 55,
-                        columnNumber: 37
-                    }, this),
-                    " or look through some ",
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("a", {
-                        target: "_blank",
-                        rel: "noreferrer",
-                        href: "https://examples.near.org",
-                        children: "example apps"
-                    }, void 0, false, {
-                        fileName: "ui-components.js",
-                        lineNumber: 55,
-                        columnNumber: 141
-                    }, this),
-                    "."
-                ]
-            }, void 0, true, {
-                fileName: "ui-components.js",
-                lineNumber: 54,
-                columnNumber: 7
-            }, this)
-        ]
-    }, void 0, true);
-}
-_c2 = EducationalText;
+_c2 = SignOutButton;
 var _c, _c1, _c2;
-$RefreshReg$(_c, "SignInPrompt");
-$RefreshReg$(_c1, "SignOutButton");
-$RefreshReg$(_c2, "EducationalText");
+$RefreshReg$(_c, "Header");
+$RefreshReg$(_c1, "SignInPrompt");
+$RefreshReg$(_c2, "SignOutButton");
 
   $parcel$ReactRefreshHelpers$38d8.postlude(module);
 } finally {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"gkKU3":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","./assets/logo.png":"3zNQ2","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"3zNQ2":[function(require,module,exports) {
+module.exports = require("10cd00332e191d5a").getBundleURL("UckoE") + "logo.f0c67fd0.png" + "?" + Date.now();
+
+},{"10cd00332e191d5a":"lgJ39"}],"lgJ39":[function(require,module,exports) {
+"use strict";
+var bundleURL = {};
+function getBundleURLCached(id) {
+    var value = bundleURL[id];
+    if (!value) {
+        value = getBundleURL();
+        bundleURL[id] = value;
+    }
+    return value;
+}
+function getBundleURL() {
+    try {
+        throw new Error();
+    } catch (err) {
+        var matches = ("" + err.stack).match(/(https?|file|ftp|(chrome|moz|safari-web)-extension):\/\/[^)\n]+/g);
+        if (matches) // The first two stack frames will be this function and getBundleURLCached.
+        // Use the 3rd one, which will be a runtime in the original bundle.
+        return getBaseURL(matches[2]);
+    }
+    return "/";
+}
+function getBaseURL(url) {
+    return ("" + url).replace(/^((?:https?|file|ftp|(chrome|moz|safari-web)-extension):\/\/.+)\/[^/]+$/, "$1") + "/";
+}
+// TODO: Replace uses with `new URL(url).origin` when ie11 is no longer supported.
+function getOrigin(url) {
+    var matches = ("" + url).match(/(https?|file|ftp|(chrome|moz|safari-web)-extension):\/\/[^/]+/);
+    if (!matches) throw new Error("Origin not found");
+    return matches[0];
+}
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+exports.getOrigin = getOrigin;
+
+},{}],"gkKU3":[function(require,module,exports) {
 exports.interopDefault = function(a) {
     return a && a.__esModule ? a : {
         default: a
@@ -58183,42 +57981,7 @@ module.exports = function() {
 },{}],"dGAA6":[function(require,module,exports) {
 module.exports = require("b9081fc21ff845fc").getBundleURL("UckoE") + "ledger-icon.a0186cc1.png" + "?" + Date.now();
 
-},{"b9081fc21ff845fc":"lgJ39"}],"lgJ39":[function(require,module,exports) {
-"use strict";
-var bundleURL = {};
-function getBundleURLCached(id) {
-    var value = bundleURL[id];
-    if (!value) {
-        value = getBundleURL();
-        bundleURL[id] = value;
-    }
-    return value;
-}
-function getBundleURL() {
-    try {
-        throw new Error();
-    } catch (err) {
-        var matches = ("" + err.stack).match(/(https?|file|ftp|(chrome|moz|safari-web)-extension):\/\/[^)\n]+/g);
-        if (matches) // The first two stack frames will be this function and getBundleURLCached.
-        // Use the 3rd one, which will be a runtime in the original bundle.
-        return getBaseURL(matches[2]);
-    }
-    return "/";
-}
-function getBaseURL(url) {
-    return ("" + url).replace(/^((?:https?|file|ftp|(chrome|moz|safari-web)-extension):\/\/.+)\/[^/]+$/, "$1") + "/";
-}
-// TODO: Replace uses with `new URL(url).origin` when ie11 is no longer supported.
-function getOrigin(url) {
-    var matches = ("" + url).match(/(https?|file|ftp|(chrome|moz|safari-web)-extension):\/\/[^/]+/);
-    if (!matches) throw new Error("Origin not found");
-    return matches[0];
-}
-exports.getBundleURL = getBundleURLCached;
-exports.getBaseURL = getBaseURL;
-exports.getOrigin = getOrigin;
-
-},{}],"aTHwi":[function(require,module,exports) {
+},{"b9081fc21ff845fc":"lgJ39"}],"aTHwi":[function(require,module,exports) {
 module.exports = require("9e535228b8d587c1").getBundleURL("UckoE") + "my-near-wallet-icon.ebfed669.png" + "?" + Date.now();
 
 },{"9e535228b8d587c1":"lgJ39"}],"9enQf":[function(require,module,exports) {
