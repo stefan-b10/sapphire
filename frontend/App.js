@@ -75,9 +75,15 @@ export default function App({ isSignedIn, contractId, wallet }) {
 					)}
 				</div>
 			</header>
-			<main>
-				<h1>Sign out / Sign in</h1>
-			</main>
+
+			<div className="mainbox">
+				
+				<h1>asdasdsad</h1>
+				<h1>asdasdsad</h1>
+				<h1>asdasdsad</h1>
+				<h1>asdasdsad</h1>
+				<h1>asdasdsad</h1>
+			</div>
 		</>
 	);
 }

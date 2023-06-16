@@ -24,6 +24,7 @@ body {
   padding: 1em;
 }
 
+/*
 main {
   border: 2px #f6f9fc;
   border-radius: 8px;
@@ -31,7 +32,13 @@ main {
   margin: 0 auto;
   max-width: 26em;
 }
+*/
 
+.mainbox {
+  /* border: 5px solid rgb(7, 16, 56); */
+  border-radius: 35px;
+  background-color: #281e30;
+}
 /* main.please-wait {
 } */
 
