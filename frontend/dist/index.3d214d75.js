@@ -27261,17 +27261,194 @@ function App({ isSignedIn , contractId , wallet  }) {
                 lineNumber: 59,
                 columnNumber: 4
             }, this),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("main", {
-                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
-                    children: "Sign out / Sign in"
-                }, void 0, false, {
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                className: "mainbox",
+                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                    className: "row",
+                    children: [
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                            className: "column side",
+                            children: [
+                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
+                                    children: "asdasdsad"
+                                }, void 0, false, {
+                                    fileName: "App.js",
+                                    lineNumber: 82,
+                                    columnNumber: 7
+                                }, this),
+                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
+                                    children: "asdasdsad"
+                                }, void 0, false, {
+                                    fileName: "App.js",
+                                    lineNumber: 83,
+                                    columnNumber: 7
+                                }, this),
+                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
+                                    children: "asdasdsad"
+                                }, void 0, false, {
+                                    fileName: "App.js",
+                                    lineNumber: 84,
+                                    columnNumber: 7
+                                }, this),
+                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
+                                    children: "asdasdsad"
+                                }, void 0, false, {
+                                    fileName: "App.js",
+                                    lineNumber: 85,
+                                    columnNumber: 7
+                                }, this),
+                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
+                                    children: "asdasdsad"
+                                }, void 0, false, {
+                                    fileName: "App.js",
+                                    lineNumber: 86,
+                                    columnNumber: 7
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "App.js",
+                            lineNumber: 81,
+                            columnNumber: 6
+                        }, this),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                            className: "column middle",
+                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                className: "middlebox",
+                                children: [
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
+                                        children: "asdasdsadasdsadfasdfsdaf sadfsadf sdaf sdaf"
+                                    }, void 0, false, {
+                                        fileName: "App.js",
+                                        lineNumber: 91,
+                                        columnNumber: 8
+                                    }, this),
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
+                                        children: "asdasdsadasdfsadfdsafsadf"
+                                    }, void 0, false, {
+                                        fileName: "App.js",
+                                        lineNumber: 92,
+                                        columnNumber: 8
+                                    }, this),
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
+                                        children: "asdasdsad"
+                                    }, void 0, false, {
+                                        fileName: "App.js",
+                                        lineNumber: 93,
+                                        columnNumber: 8
+                                    }, this),
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
+                                        children: "asdasdsad"
+                                    }, void 0, false, {
+                                        fileName: "App.js",
+                                        lineNumber: 94,
+                                        columnNumber: 8
+                                    }, this),
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
+                                        children: "asdasdsad"
+                                    }, void 0, false, {
+                                        fileName: "App.js",
+                                        lineNumber: 95,
+                                        columnNumber: 8
+                                    }, this),
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
+                                        children: "asdasdsadasdsadfasdfsdaf sadfsadf sdaf sdaf"
+                                    }, void 0, false, {
+                                        fileName: "App.js",
+                                        lineNumber: 96,
+                                        columnNumber: 8
+                                    }, this),
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
+                                        children: "asdasdsadasdfsadfdsafsadf"
+                                    }, void 0, false, {
+                                        fileName: "App.js",
+                                        lineNumber: 97,
+                                        columnNumber: 8
+                                    }, this),
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
+                                        children: "asdasdsad"
+                                    }, void 0, false, {
+                                        fileName: "App.js",
+                                        lineNumber: 98,
+                                        columnNumber: 8
+                                    }, this),
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
+                                        children: "asdasdsad"
+                                    }, void 0, false, {
+                                        fileName: "App.js",
+                                        lineNumber: 99,
+                                        columnNumber: 8
+                                    }, this),
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
+                                        children: "asdasdsad"
+                                    }, void 0, false, {
+                                        fileName: "App.js",
+                                        lineNumber: 100,
+                                        columnNumber: 8
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "App.js",
+                                lineNumber: 90,
+                                columnNumber: 7
+                            }, this)
+                        }, void 0, false, {
+                            fileName: "App.js",
+                            lineNumber: 89,
+                            columnNumber: 6
+                        }, this),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                            className: "column side",
+                            children: [
+                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
+                                    children: "asdasdsad"
+                                }, void 0, false, {
+                                    fileName: "App.js",
+                                    lineNumber: 105,
+                                    columnNumber: 7
+                                }, this),
+                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
+                                    children: "asdasdsad"
+                                }, void 0, false, {
+                                    fileName: "App.js",
+                                    lineNumber: 106,
+                                    columnNumber: 7
+                                }, this),
+                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
+                                    children: "asdasdsad"
+                                }, void 0, false, {
+                                    fileName: "App.js",
+                                    lineNumber: 107,
+                                    columnNumber: 7
+                                }, this),
+                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
+                                    children: "asdasdsad"
+                                }, void 0, false, {
+                                    fileName: "App.js",
+                                    lineNumber: 108,
+                                    columnNumber: 7
+                                }, this),
+                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
+                                    children: "asdasdsad"
+                                }, void 0, false, {
+                                    fileName: "App.js",
+                                    lineNumber: 109,
+                                    columnNumber: 7
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "App.js",
+                            lineNumber: 104,
+                            columnNumber: 6
+                        }, this)
+                    ]
+                }, void 0, true, {
                     fileName: "App.js",
-                    lineNumber: 79,
+                    lineNumber: 80,
                     columnNumber: 5
                 }, this)
             }, void 0, false, {
                 fileName: "App.js",
-                lineNumber: 78,
+                lineNumber: 79,
                 columnNumber: 4
             }, this)
         ]

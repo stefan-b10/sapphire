@@ -24,12 +24,39 @@ body {
   padding: 1em;
 }
 
-main {
-  max-width: 26em;
-  border: 2px #f6f9fc;
-  border-radius: 8px;
-  margin: 0 auto;
-  padding: 20px;
+.mainbox {
+  background-color: #281e30;
+  border-radius: 35px;
+}
+
+.row:after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.column {
+  float: left;
+  padding: 10px;
+}
+
+.column.side {
+  width: 25%;
+}
+
+.column.middle {
+  width: 50%;
+}
+
+@media screen and (width <= 600px) {
+  .column.side, .column.middle {
+    width: 100%;
+  }
+}
+
+.middlebox {
+  border-left: 1px solid #4a3958;
+  border-right: 1px solid #4a3958;
 }
 
 h1 {

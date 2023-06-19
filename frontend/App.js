@@ -77,12 +77,38 @@ export default function App({ isSignedIn, contractId, wallet }) {
 			</header>
 
 			<div className="mainbox">
-				
-				<h1>asdasdsad</h1>
-				<h1>asdasdsad</h1>
-				<h1>asdasdsad</h1>
-				<h1>asdasdsad</h1>
-				<h1>asdasdsad</h1>
+				<div className="row">
+					<div className="column side">
+						<h1>asdasdsad</h1>
+						<h1>asdasdsad</h1>
+						<h1>asdasdsad</h1>
+						<h1>asdasdsad</h1>
+						<h1>asdasdsad</h1>
+					</div>
+
+					<div className="column middle">
+						<div className="middlebox">
+							<h1>asdasdsadasdsadfasdfsdaf sadfsadf sdaf sdaf</h1>
+							<h1>asdasdsadasdfsadfdsafsadf</h1>
+							<h1>asdasdsad</h1>
+							<h1>asdasdsad</h1>
+							<h1>asdasdsad</h1>
+							<h1>asdasdsadasdsadfasdfsdaf sadfsadf sdaf sdaf</h1>
+							<h1>asdasdsadasdfsadfdsafsadf</h1>
+							<h1>asdasdsad</h1>
+							<h1>asdasdsad</h1>
+							<h1>asdasdsad</h1>
+						</div>
+					</div>
+
+					<div className="column side">
+						<h1>asdasdsad</h1>
+						<h1>asdasdsad</h1>
+						<h1>asdasdsad</h1>
+						<h1>asdasdsad</h1>
+						<h1>asdasdsad</h1>
+					</div>
+				</div>
 			</div>
 		</>
 	);
