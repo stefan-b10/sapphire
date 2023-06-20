@@ -4,6 +4,8 @@ import App from "./App";
 
 // NEAR
 import { Wallet } from "./near-wallet";
+import { Contract } from "near-api-js";
+import { providers } from "near-api-js";
 
 const CONTRACT_ADDRESS = process.env.CONTRACT_NAME;
 
@@ -17,11 +19,20 @@ const root = createRoot(container); // createRoot(container!) if you use TypeScr
 window.onload = async () => {
 	const isSignedIn = await wallet.startUp();
 
+	console.log(wallet.accountId);
+	console.log(CONTRACT_ADDRESS);
+
+	const accountId = wallet.accountId;
+	
+	const firstName = await wallet.viewMethod(accountId, "get_first_name");
+	console.log(firstName);
+	
 	root.render(
 		<App
 			isSignedIn={isSignedIn}
 			contractId={CONTRACT_ADDRESS}
 			wallet={wallet}
+			firstName={firstName}
 		/>
 	);
 };

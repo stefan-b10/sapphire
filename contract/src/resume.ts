@@ -1,4 +1,4 @@
-import { NearBindgen, near, call, view, Vector } from "near-sdk-js";
+import { NearBindgen, near, call, view, Vector, initialize } from "near-sdk-js";
 
 type Education = {
 	school: string;
@@ -25,6 +25,13 @@ class Resume {
 	phoneNumber: number = 0;
 	education: Vector<Education> = new Vector<Education>("education");
 	experience: Vector<WorkExperience> = new Vector<WorkExperience>("experience");
+
+	// Init function
+	@initialize({})
+	init({ firstName, lastName }: { firstName: string; lastName: string }) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+	}
 
 	// Name functions
 	@view({})

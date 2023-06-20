@@ -5,7 +5,7 @@ import "./assets/global.css";
 
 import { Header, SignInPrompt, SignOutButton } from "./ui-components";
 
-export default function App({ isSignedIn, contractId, wallet }) {
+export default function App({ isSignedIn, contractId, wallet, firstName }) {
 	const [valueFromBlockchain, setValueFromBlockchain] = React.useState();
 
 	const [uiPleaseWait, setUiPleaseWait] = React.useState(true);
@@ -79,8 +79,7 @@ export default function App({ isSignedIn, contractId, wallet }) {
 			<div className="mainbox">
 				<div className="row">
 					<div className="column side">
-						<h1>asdasdsad</h1>
-						<h1>asdasdsad</h1>
+						<h1>{firstName}</h1>
 						<h1>asdasdsad</h1>
 						<h1>asdasdsad</h1>
 						<h1>asdasdsad</h1>
