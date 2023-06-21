@@ -30,3 +30,11 @@ export function SignOutButton({ accountId, onClick }) {
 		</button>
 	);
 }
+
+export function DeployContract({ wallet, onClick }) {
+	return (
+		<button type="submit" onClick={onClick}>
+			Deploy Resume Contract
+		</button>
+	);
+}

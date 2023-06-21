@@ -2,10 +2,12 @@
 
 CONTRACT_DIRECTORY=../contract
 DEV_ACCOUNT_FILE="${CONTRACT_DIRECTORY}/neardev/dev-account.env"
+WASM="${CONTRACT_DIRECTORY}/build/resume.wasm"
 
 start () {
   echo The app is starting!
-  env-cmd -f $DEV_ACCOUNT_FILE parcel index.html --open
+  # env-cmd -f $DEV_ACCOUNT_FILE parcel index.html --open
+  env-cmd -f $WASM parcel index.html --open
 }
 
 alert () {

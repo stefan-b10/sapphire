@@ -3,10 +3,22 @@ import React from "react";
 
 import "./assets/global.css";
 
-import { Header, SignInPrompt, SignOutButton } from "./ui-components";
+import {
+	Header,
+	SignInPrompt,
+	SignOutButton,
+	DeployContract,
+} from "./ui-components";
 
-export default function App({ isSignedIn, contractId, wallet, firstName }) {
-	const [valueFromBlockchain, setValueFromBlockchain] = React.useState();
+const wasmPath = "../contract/build/resume.wasm";
+
+export default function App({
+	isSignedIn,
+	wallet,
+	isDeployed,
+	compiledContract,
+}) {
+	// const [valueFromBlockchain, setValueFromBlockchain] = React.useState();
 
 	const [uiPleaseWait, setUiPleaseWait] = React.useState(true);
 
@@ -54,6 +66,27 @@ export default function App({ isSignedIn, contractId, wallet, firstName }) {
   }
   */
 
+	// function deployContract(e) {
+	// 	e.preventDefault();
+	// 	console.log(e);
+	// }
+
+	const deployContract = (e) => {
+		e.preventDefault();
+		const firstName = e.target.elements.firstname.value;
+		const lastName = e.target.elements.lastname.value;
+		if (firstName != "" && lastName != "") {
+			console.log(wallet.wallet);
+
+			// const tx = wallet.account
+			// 	.deployContract(compiledContract, {
+			// 		firstName: firstName,
+			// 		lastName: lastName,
+			// 	})
+			// 	.then(() => console.log(tx.contract.contractId));
+		}
+	};
+
 	return (
 		<>
 			<header
@@ -79,7 +112,7 @@ export default function App({ isSignedIn, contractId, wallet, firstName }) {
 			<div className="mainbox">
 				<div className="row">
 					<div className="column side">
-						<h1>{firstName}</h1>
+						{/* <h1>{firstName}</h1> */}
 						<h1>asdasdsad</h1>
 						<h1>asdasdsad</h1>
 						<h1>asdasdsad</h1>
@@ -87,16 +120,53 @@ export default function App({ isSignedIn, contractId, wallet, firstName }) {
 
 					<div className="column middle">
 						<div className="middlebox">
-							<h1>asdasdsadasdsadfasdfsdaf sadfsadf sdaf sdaf</h1>
-							<h1>asdasdsadasdfsadfdsafsadf</h1>
-							<h1>asdasdsad</h1>
-							<h1>asdasdsad</h1>
-							<h1>asdasdsad</h1>
-							<h1>asdasdsadasdsadfasdfsdaf sadfsadf sdaf sdaf</h1>
-							<h1>asdasdsadasdfsadfdsafsadf</h1>
-							<h1>asdasdsad</h1>
-							<h1>asdasdsad</h1>
-							<h1>asdasdsad</h1>
+							{isDeployed ? (
+								<div>
+									<h1>asdasdsadasdsadfasdfsdaf sadfsadf sdaf sdaf</h1>
+									<h1>asdasdsadasdfsadfdsafsadf</h1>
+								</div>
+							) : (
+								<>
+									<h1>Welcome to your Blockchain Resume</h1>
+									<p>
+										You don`t have a Resume contract deployed on blockchain yet.
+										Please enter your First name, Last name and deploy your
+										resume contract.
+									</p>
+
+									<form
+										style={{
+											display: "flex",
+											flexDirection: "column",
+											justifyContent: "center",
+											alignItems: "center",
+											marginTop: "2rem",
+										}}
+										onSubmit={deployContract}
+									>
+										<label className="deploy label" for="firstname">
+											First name:
+										</label>
+										<input
+											className="deploy input"
+											type="text"
+											id="firstname"
+										/>
+										<label className="deploy label" for="lasttname">
+											Last name:
+										</label>
+										<input
+											className="deploy input"
+											type="text"
+											id="lastname"
+										></input>
+
+										<div style={{ marginTop: "1rem" }}>
+											<DeployContract />
+										</div>
+									</form>
+								</>
+							)}
 						</div>
 					</div>
 

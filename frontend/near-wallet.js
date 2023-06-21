@@ -112,6 +112,10 @@ export class Wallet {
 		});
 	}
 
+	async deployContract(contractSource, args = {}) {
+		return await this.wallet.deployContract(contractSource, args);
+	}
+
 	// Get transaction result from the network
 	async getTransactionResult(txhash) {
 		const { network } = this.walletSelector.options;
