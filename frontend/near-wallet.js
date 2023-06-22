@@ -1,7 +1,7 @@
 /* A helper file that simplifies using the wallet selector */
 
 // near api js
-import { providers } from "near-api-js";
+import { providers, transactions } from "near-api-js";
 
 // wallet selector UI
 import "@near-wallet-selector/modal-ui/styles.css";
@@ -115,17 +115,26 @@ export class Wallet {
 	async deploy(wasmBytes) {
 		const wasmBase64 = Buffer.from(wasmBytes).toString("base64");
 
+		// return await this.wallet.signAndSendTransaction({
+		// 	signerId: this.accountId,
+		// 	receiverId: this.accountId,
+		// 	actions: [
+		// 		{
+		// 			type: "DeployContract",
+		// 			params: {
+		// 				code: wasmBase64,
+		// 			},
+		// 		},
+		// 	],
+		// });
+
+		const deployAction = [transactions.DeployContract(wasmBase64)];
+		console.log(deployAction);
+
 		return await this.wallet.signAndSendTransaction({
-			signerId: this.accountId,
+			// signerId: this.accountId,
 			receiverId: this.accountId,
-			actions: [
-				{
-					type: "DeployContract",
-					params: {
-						code: wasmBase64,
-					},
-				},
-			],
+			actions: deployAction,
 		});
 	}
 

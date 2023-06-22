@@ -78,9 +78,8 @@ export default function App({
 
 			const response = await fetch("./assets/resume.wasm");
 			const wasmBytes = await response.arrayBuffer();
-			const wasmBase64 = Buffer.from(wasmBytes).toString("base64");
 
-			const result = wallet.deploy(wasmBase64);
+			const result = wallet.deploy(wasmBytes);
 			console.log(result);
 
 			/*
