@@ -112,8 +112,21 @@ export class Wallet {
 		});
 	}
 
-	async deployContract(contractSource, args = {}) {
-		return await this.wallet.deployContract(contractSource, args);
+	async deploy(wasmBytes) {
+		const wasmBase64 = Buffer.from(wasmBytes).toString("base64");
+
+		return await this.wallet.signAndSendTransaction({
+			signerId: this.accountId,
+			receiverId: this.accountId,
+			actions: [
+				{
+					type: "DeployContract",
+					params: {
+						code: wasmBase64,
+					},
+				},
+			],
+		});
 	}
 
 	// Get transaction result from the network

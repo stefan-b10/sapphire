@@ -1,13 +1,12 @@
 #!/bin/sh
 
-CONTRACT_DIRECTORY=../contract
-DEV_ACCOUNT_FILE="${CONTRACT_DIRECTORY}/neardev/dev-account.env"
-WASM="${CONTRACT_DIRECTORY}/build/resume.wasm"
+# CONTRACT_DIRECTORY=../contract
+# DEV_ACCOUNT_FILE="${CONTRACT_DIRECTORY}/neardev/dev-account.env"
 
 start () {
   echo The app is starting!
+  parcel index.html --open
   # env-cmd -f $DEV_ACCOUNT_FILE parcel index.html --open
-  env-cmd -f $WASM parcel index.html --open
 }
 
 alert () {
@@ -21,8 +20,10 @@ alert () {
   echo "======================================================"
 }
 
-if [ -f "$DEV_ACCOUNT_FILE" ]; then
-  start
-else
-  alert
-fi
+# if [ -f "$DEV_ACCOUNT_FILE" ]; then
+#   start
+# else
+#   alert
+# fi
+
+start

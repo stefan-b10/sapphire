@@ -10,8 +10,6 @@ import {
 	DeployContract,
 } from "./ui-components";
 
-const wasmPath = "../contract/build/resume.wasm";
-
 export default function App({
 	isSignedIn,
 	wallet,
@@ -71,19 +69,32 @@ export default function App({
 	// 	console.log(e);
 	// }
 
-	const deployContract = (e) => {
+	const deployContract = async (e) => {
 		e.preventDefault();
 		const firstName = e.target.elements.firstname.value;
 		const lastName = e.target.elements.lastname.value;
 		if (firstName != "" && lastName != "") {
-			console.log(wallet.wallet);
+			// console.log(wallet.wallet);
 
-			// const tx = wallet.account
-			// 	.deployContract(compiledContract, {
-			// 		firstName: firstName,
-			// 		lastName: lastName,
-			// 	})
-			// 	.then(() => console.log(tx.contract.contractId));
+			const response = await fetch("./assets/resume.wasm");
+			const wasmBytes = await response.arrayBuffer();
+			const wasmBase64 = Buffer.from(wasmBytes).toString("base64");
+
+			const result = wallet.deploy(wasmBase64);
+			console.log(result);
+
+			/*
+			fetch("./assets/resume.wasm").then((res) => {
+				console.log(res);
+				console.log(res.body);
+				res.arrayBuffer().then((r) => {
+					console.log(r);
+					WebAssembly.instantiate(r).then((e) => {
+						console.log(e);
+					});
+				});
+			});
+			*/
 		}
 	};
 

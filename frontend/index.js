@@ -5,7 +5,6 @@ import App from "./App";
 // NEAR
 import { Wallet } from "./near-wallet";
 
-const WASM = process.env;
 
 // When creating the wallet you can optionally ask to create an access key
 // Having the key enables to call non-payable methods without interrupting the user to sign
@@ -33,10 +32,9 @@ window.onload = async () => {
 	root.render(
 		<App
 			isSignedIn={isSignedIn}
-			// contractId={CONTRACT_ADDRESS}
 			wallet={wallet}
 			isDeployed={isDeployed}
-			compiledContract={WASM}
+			// compiledContract={WASM}
 		/>
 	);
 };
