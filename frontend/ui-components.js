@@ -1,5 +1,9 @@
 import React from "react";
 import logo from "./assets/logo.png";
+import wallet from "./assets/wallet.png";
+import checkbox from "./assets/checked-checkbox.png";
+import notifications from "./assets/notifications.png"
+import find from "./assets/find.png"
 
 export function Header() {
 	return (
@@ -31,7 +35,43 @@ export function SignOutButton({ accountId, onClick }) {
 	);
 }
 
-export function DeployContract({ wallet, onClick }) {
+export function MyWalletButton() {
+	return (
+		<button className="left buttons">
+			<img src={wallet}></img>
+			<span style={{ marginLeft: "25px" }}>My Wallet</span>
+		</button>
+	);
+}
+
+export function ReferencesButton() {
+	return (
+		<button className="left buttons">
+			<img src={checkbox}></img>
+			<span style={{ marginLeft: "25px" }}>References</span>
+		</button>
+	);
+}
+
+export function NotificationsButton() {
+	return (
+		<button className="left buttons">
+			<img src={notifications}></img>
+			<span style={{ marginLeft: "25px" }}>Notifications</span>
+		</button>
+	);
+}
+
+export function FindJobsButton() {
+	return (
+		<button className="left buttons">
+			<img src={find}></img>
+			<span style={{ marginLeft: "25px" }}>Find Jobs</span>
+		</button>
+	);
+}
+
+export function DeployContract({ onClick }) {
 	return (
 		<button type="submit" onClick={onClick}>
 			Deploy Resume Contract

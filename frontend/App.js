@@ -1,5 +1,6 @@
 import "regenerator-runtime/runtime";
 import React from "react";
+import QRCode from "react-qr-code";
 
 import "./assets/global.css";
 
@@ -7,21 +8,33 @@ import {
 	Header,
 	SignInPrompt,
 	SignOutButton,
+	MyWalletButton,
+	ReferencesButton,
+	NotificationsButton,
+	FindJobsButton,
 	DeployContract,
 } from "./ui-components";
 
-export default function App({
-	isSignedIn,
-	wallet,
-	isDeployed,
-	compiledContract,
-}) {
+export default function App({ isSignedIn, wallet, isDeployed }) {
 	// const [valueFromBlockchain, setValueFromBlockchain] = React.useState();
+
+	const [firstName, setFirstName] = React.useState();
+	const [lastName, setLastName] = React.useState();
+	const [email, setEmail] = React.useState();
+	const [phone, setPhone] = React.useState();
 
 	const [uiPleaseWait, setUiPleaseWait] = React.useState(true);
 
 	// Get blockchian state once on component load
 	React.useEffect(() => {
+		if (isDeployed) {
+			getFirstName().then(setFirstName).catch(alert);
+			getLastName().then(setLastName).catch(alert);
+			getEmail().then(setEmail).catch(alert);
+			getPhone().then(setPhone).catch(alert);
+		}
+
+		// .finally(() => setUiPleaseWait(false));
 		// getGreeting()
 		//   .then(setValueFromBlockchain)
 		//   .catch(alert)
@@ -76,10 +89,9 @@ export default function App({
 		if (firstName != "" && lastName != "") {
 			// console.log(wallet.wallet);
 
-			const response = await fetch("./assets/resume.wasm");
-			const wasmBytes = await response.arrayBuffer();
+			const wasm = await fetch("./assets/resume.wasm");
 
-			const result = wallet.deploy(wasmBytes);
+			const result = wallet.deploy(wasm);
 			console.log(result);
 
 			/*
@@ -96,6 +108,22 @@ export default function App({
 			*/
 		}
 	};
+
+	function getFirstName() {
+		return wallet.viewMethod(wallet.accountId, "get_first_name");
+	}
+
+	function getLastName() {
+		return wallet.viewMethod(wallet.accountId, "get_last_name");
+	}
+
+	function getEmail() {
+		return wallet.viewMethod(wallet.accountId, "get_email");
+	}
+
+	function getPhone() {
+		return wallet.viewMethod(wallet.accountId, "get_phone_number");
+	}
 
 	return (
 		<>
@@ -122,18 +150,43 @@ export default function App({
 			<div className="mainbox">
 				<div className="row">
 					<div className="column side">
-						{/* <h1>{firstName}</h1> */}
-						<h1>asdasdsad</h1>
-						<h1>asdasdsad</h1>
-						<h1>asdasdsad</h1>
+						<div className="name container">
+							<QRCode
+								className="qr"
+								value={isDeployed ? wallet.accountId : "Contract not deployed"}
+							></QRCode>
+							<h1 className="name full">
+								{firstName} {lastName}
+							</h1>
+						</div>
+
+						<MyWalletButton />
+						<ReferencesButton />
+						<NotificationsButton />
+						<FindJobsButton />
 					</div>
 
 					<div className="column middle">
 						<div className="middlebox">
 							{isDeployed ? (
 								<div>
-									<h1>asdasdsadasdsadfasdfsdaf sadfsadf sdaf sdaf</h1>
-									<h1>asdasdsadasdfsadfdsafsadf</h1>
+									<h1>CV</h1>
+									<div className="resume">
+										<div className="fullname">
+											<span className="first name">{firstName} </span>
+											<span className="last name">{lastName}</span>
+										</div>
+										<div className="contact info">
+											<span className="email">Email: </span>
+											<span className="email val">{email}</span>
+											<span className="separator"></span>
+											<span className="email">Phone: </span>
+											<span className="email val">{phone}</span>
+										</div>
+										<div className="section">
+											<div className="section_title" >Experience</div>
+										</div>
+									</div>
 								</div>
 							) : (
 								<>

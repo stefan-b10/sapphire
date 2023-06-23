@@ -16,5 +16,8 @@
   "devDependencies": {
     "near-cli": "^3.3.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "react-native-svg": "^13.9.0",
+    "react-qr-code": "^2.0.11"
+  }
 }

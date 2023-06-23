@@ -112,30 +112,30 @@ export class Wallet {
 		});
 	}
 
-	async deploy(wasmBytes) {
+	async deploy(wasm) {
+		const wasmBytes = await wasm.arrayBuffer();
 		const wasmBase64 = Buffer.from(wasmBytes).toString("base64");
 
-		// return await this.wallet.signAndSendTransaction({
-		// 	signerId: this.accountId,
-		// 	receiverId: this.accountId,
-		// 	actions: [
-		// 		{
-		// 			type: "DeployContract",
-		// 			params: {
-		// 				code: wasmBase64,
-		// 			},
-		// 		},
-		// 	],
-		// });
-
-		const deployAction = [transactions.DeployContract(wasmBase64)];
-		console.log(deployAction);
-
 		return await this.wallet.signAndSendTransaction({
-			// signerId: this.accountId,
+			signerId: this.accountId,
 			receiverId: this.accountId,
-			actions: deployAction,
+			actions: [
+				{
+					type: "DeployContract",
+					params: {
+						code: wasmBase64,
+					},
+				},
+			],
 		});
+
+		// const deployAction = [transactions.deployContract(wasmBase64)];
+		// console.log(deployAction);
+
+		// return await this.wallet.signAndSendTransaction({
+		// 	receiverId: this.accountId,
+		// 	actions: deployAction,
+		// });
 	}
 
 	// Get transaction result from the network

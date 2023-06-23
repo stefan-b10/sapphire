@@ -22,7 +22,7 @@ class Resume {
 	firstName: string = "";
 	lastName: string = "";
 	email: string = "";
-	phoneNumber: number = 0;
+	phoneNumber: string = "";
 	education: Vector<Education> = new Vector<Education>("education");
 	experience: Vector<WorkExperience> = new Vector<WorkExperience>("experience");
 
@@ -67,12 +67,12 @@ class Resume {
 
 	// Phone number functions
 	@view({})
-	get_phone_number(): number {
+	get_phone_number(): string {
 		return this.phoneNumber;
 	}
 
 	@call({ privateFunction: true })
-	set_phone_number({ phoneNumber }: { phoneNumber: number }) {
+	set_phone_number({ phoneNumber }: { phoneNumber: string }): void {
 		this.phoneNumber = phoneNumber;
 	}
 

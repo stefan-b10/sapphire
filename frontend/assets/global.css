@@ -59,6 +59,15 @@ body {
 .middlebox {
 	border-right: 1px solid #4a3958;
 	border-left: 1px solid #4a3958;
+	padding: 1em;
+}
+
+.resume {
+	border: 1px solid black;
+	background-color: rgb(36, 34, 34);
+	margin: 1em;
+	border-radius: 20px;
+	padding: 1em;
 }
 
 h1 {
@@ -73,6 +82,72 @@ p {
 	color: #efefef;
 	text-align: center;
 	font-size: 0.8em;
+}
+
+.name.container {
+	display: flex;
+	align-items: center;
+}
+
+.name.full {
+	padding-top: 1em;
+	padding-right: 1em;
+	text-align: right;
+}
+
+.fullname {
+	text-decoration: underline #efefef;
+}
+
+.first.name {
+	color: #efefef;
+	font-weight: 800;
+}
+
+.last.name {
+	color: #efefef;
+	font-weight: 200;
+}
+
+.contact.info {
+	margin-bottom: 20px;
+}
+
+.email,
+.phone {
+	color: #295568;
+	font-size: 0.7em;
+}
+
+.email.val,
+.phone.val {
+	color: #efefef;
+	font-size: 0.7em;
+}
+
+.separator {
+	height: 10px;
+    display: inline-block;
+    border-left: 2px solid #999;
+    margin: 0px 10px;
+}
+
+.section {
+	margin-bottom: 40px;
+}
+
+.section_title {
+	letter-spacing: 2px;
+	color: #1a852b;
+	font-weight: bold;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.qr {
+	padding-left: 1em;
+	width: 100px;
+	height: 100px;
 }
 
 .deploy.label {
@@ -105,5 +180,16 @@ button {
 button:hover,
 button:focus {
 	box-shadow: 0 0 10em rgba(255, 255, 255, 0.2) inset;
+}
+
+.left.buttons {
+	background-color: #281e30;
+	display:flex;
+	align-items: center;	
+	float:left;
+	font-size: smaller;
+	padding: 1em;
+	padding-left: 2em;
+	padding-right: 3em;
 }
 
