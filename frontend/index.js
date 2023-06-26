@@ -18,7 +18,7 @@ window.onload = async () => {
 
   if (isSignedIn) {
     const accountId = wallet.accountId;
-
+    console.log(accountId);
     try {
       const firstName = await wallet.viewMethod(accountId, "get_first_name");
       if (firstName) isDeployed = true;
