@@ -1,10 +1,15 @@
 import "regenerator-runtime/runtime";
 import React from "react";
 import QRCode from "react-qr-code";
+import { Accordion, AccordionItem } from "@szhsin/react-accordion";
+import badges from "./assets/nft.jpg";
+
+import DatePicker from "react-datepicker";
+import "./assets/react-datepicker.css";
 
 import "./assets/global.css";
 
-import { Header, SignInPrompt, SignOutButton, MyWalletButton, ReferencesButton, NotificationsButton, FindJobsButton, DeployContract } from "./ui-components";
+import { Header, SignInPrompt, SignOutButton, MyWalletButton, ReferencesButton, NotificationsButton, FindJobsButton, DeployContract, Badges } from "./ui-components";
 
 export default function App({ isSignedIn, wallet, isDeployed }) {
   // const [valueFromBlockchain, setValueFromBlockchain] = React.useState();
@@ -16,92 +21,52 @@ export default function App({ isSignedIn, wallet, isDeployed }) {
   const [experience, setExperience] = React.useState({ position: "", company: "", location: "", description: "", startYear: "", endYear: "" });
   const [education, setEducation] = React.useState({ school: "", degree: "", fieldOfStudy: "", startYear: "", endYear: "" });
 
+  const [startDate, setStartDate] = React.useState(new Date());
+  const [endDate, setEndDate] = React.useState(new Date());
+
   const [uiPleaseWait, setUiPleaseWait] = React.useState(true);
 
   // Get blockchian state once on component load
   React.useEffect(() => {
     if (isDeployed) {
-      getFirstName().then(setFirstName).catch(alert);
+      getFirstName()
+        .then(setFirstName)
+        .catch(alert)
+        .finally(() => {
+          setUiPleaseWait(false);
+        });
       getLastName().then(setLastName).catch(alert);
       getEmail().then(setEmail).catch(alert);
       getPhone().then(setPhone).catch(alert);
       getExperience().then(setExperience).catch(alert);
       getEducation().then(setEducation).catch(alert);
     }
-
-    // .finally(() => setUiPleaseWait(false));
-    // getGreeting()
-    //   .then(setValueFromBlockchain)
-    //   .catch(alert)
-    //   .finally(() => {
-    //     setUiPleaseWait(false);
-    //   });
   }, []);
 
-  /*
-	/// If user not signed-in with wallet - show prompt
-	if (!isSignedIn) {
-		// Sign-in flow will reload the page later
-		return (
-			<SignInPrompt
-				greeting={valueFromBlockchain}
-				onClick={() => wallet.signIn()}
-			/>
-		);
-	}
-  */
-
-  /*
-  function changeGreeting(e) {
-    e.preventDefault();
-    setUiPleaseWait(true);
-    const { greetingInput } = e.target.elements;
-    
-    // use the wallet to send the greeting to the contract
-    wallet.callMethod({ method: 'set_greeting', args: { message: greetingInput.value }, contractId })
-      .then(async () => {return getGreeting();})
-      .then(setValueFromBlockchain)
-      .finally(() => {
-        setUiPleaseWait(false);
-      });
-  }
-
-  function getGreeting(){
+  function getGreeting() {
     // use the wallet to query the contract's greeting
-    return wallet.viewMethod({ method: 'get_greeting', contractId })
+    return wallet.viewMethod({ method: "get_greeting", contractId });
   }
-  */
 
-  // function deployContract(e) {
-  // 	e.preventDefault();
-  // 	console.log(e);
-  // }
+  // Utils
 
-  const deployContract = async (e) => {
-    e.preventDefault();
-    const firstName = e.target.elements.firstname.value;
-    const lastName = e.target.elements.lastname.value;
-    if (firstName != "" && lastName != "") {
-      const wasm = await fetch("./assets/resume.wasm");
+  function getMonthAndYearFromEpochTime(epochTimeInSeconds) {
+    const date = new Date(epochTimeInSeconds * 1000);
+    const month = date.toLocaleString("default", { month: "short" });
+    const year = date.getFullYear();
 
-      const result = wallet.deploy(wasm);
-      console.log(result);
+    return { month, year };
+  }
 
-      /*
-			fetch("./assets/resume.wasm").then((res) => {
-				console.log(res);
-				console.log(res.body);
-				res.arrayBuffer().then((r) => {
-					console.log(r);
-					WebAssembly.instantiate(r).then((e) => {
-						console.log(e);
-					});
-				});
-			});
-			*/
-    }
-  };
+  function updateStartDate(date) {
+    setStartDate(date);
+  }
 
+  function updateEndDate(date) {
+    setEndDate(date);
+  }
+
+  // State read functions
   function getFirstName() {
     return wallet.viewMethod(wallet.accountId, "get_first_name");
   }
@@ -126,16 +91,137 @@ export default function App({ isSignedIn, wallet, isDeployed }) {
     return wallet.viewMethod(wallet.accountId, "get_education");
   }
 
-  function getMonthAndYearFromEpochTime(epochTimeInSeconds) {
-    const date = new Date(epochTimeInSeconds * 1000);
-    const month = date.toLocaleString("default", { month: "short" });
-    const year = date.getFullYear();
+  // State modify function
+  function changeFirstName(e) {
+    e.preventDefault();
+    setUiPleaseWait(true);
 
-    return { month, year };
+    const newFirstName = e.target.elements.newfirstname.value;
+
+    wallet
+      .callMethod(wallet.accountId, "change_first_name", { firstName: newFirstName })
+      .then(async () => {
+        return getFirstName();
+      })
+      .then(setFirstName)
+      .finally(() => {
+        setUiPleaseWait(false);
+      });
   }
 
+  function changeLastName(e) {
+    e.preventDefault();
+    setUiPleaseWait(true);
+
+    const newLastName = e.target.elements.newlastname.value;
+
+    wallet
+      .callMethod(wallet.accountId, "change_last_name", { lastName: newLastName })
+      .then(async () => {
+        return getLastName();
+      })
+      .then(setLastName)
+      .finally(() => {
+        setUiPleaseWait(false);
+      });
+  }
+
+  function changeEmail(e) {
+    e.preventDefault();
+    setUiPleaseWait(true);
+
+    const newEmail = e.target.elements.newemail.value;
+
+    wallet
+      .callMethod(wallet.accountId, "set_email", { email: newEmail })
+      .then(async () => {
+        return getEmail();
+      })
+      .then(setEmail)
+      .finally(() => {
+        setUiPleaseWait(false);
+      });
+  }
+
+  function changePhone(e) {
+    e.preventDefault();
+    setUiPleaseWait(true);
+
+    const newPhone = e.target.elements.newphone.value;
+
+    wallet
+      .callMethod(wallet.accountId, "set_phone_number", { phoneNumber: newPhone })
+      .then(async () => {
+        return getPhone();
+      })
+      .then(setPhone)
+      .finally(() => {
+        setUiPleaseWait(false);
+      });
+  }
+
+  function addExperience(e) {
+    e.preventDefault();
+    setUiPleaseWait(true);
+
+    const company = e.target.elements.company.value;
+    const position = e.target.elements.position.value;
+    const location = e.target.elements.location.value;
+    const description = e.target.elements.description.value;
+    const startDateTimestamp = Math.floor(startDate.getTime() / 1000);
+    const endDateTimestamp = Math.floor(endDate.getTime() / 1000);
+
+    wallet
+      .callMethod(wallet.accountId, "add_experience", {
+        experience: { position: position, company: company, location: location, description: description, startYear: startDateTimestamp, endYear: endDateTimestamp },
+      })
+      .then(async () => {
+        return getExperience();
+      })
+      .then(setExperience)
+      .finally(() => {
+        setUiPleaseWait(false);
+      });
+  }
+
+  function addEducation(e) {
+    e.preventDefault();
+    setUiPleaseWait(true);
+
+    const school = e.target.elements.school.value;
+    const degree = e.target.elements.degree.value;
+    const fieldOfStudy = e.target.elements.fieldofstudy.value;
+    const startDateTimestamp = Math.floor(startDate.getTime() / 1000);
+    const endDateTimestamp = Math.floor(endDate.getTime() / 1000);
+
+    wallet
+      .callMethod(wallet.accountId, "add_education", {
+        education: { school: school, degree: degree, fieldOfStudy: fieldOfStudy, startYear: startDateTimestamp, endYear: endDateTimestamp },
+      })
+      .then(async () => {
+        return getEducation();
+      })
+      .then(setEducation)
+      .finally(() => {
+        setUiPleaseWait(false);
+      });
+  }
+
+  //TODO
+  const deployContract = async (e) => {
+    e.preventDefault();
+    const firstName = e.target.elements.firstname.value;
+    const lastName = e.target.elements.lastname.value;
+    if (firstName != "" && lastName != "") {
+      const wasm = await fetch("./assets/resume.wasm");
+
+      const result = wallet.deploy(wasm);
+      console.log(result);
+    }
+  };
+
   return (
-    <>
+    <div className={uiPleaseWait ? "please-wait" : ""}>
       <header
         style={{
           display: "flex",
@@ -197,7 +283,7 @@ export default function App({ isSignedIn, wallet, isDeployed }) {
                                 </div>
                                 <div className="right">
                                   <div className="list_bold">{el.position}</div>
-                                  <div className="list_text">{el.description}sd d fdsfsdfdsf ds fsdfdsfdsfdsf dsfsdfdsfds fdsf dsfdsfdsf</div>
+                                  <div className="list_text">{el.description}</div>
                                 </div>
                               </div>
                             ))
@@ -231,22 +317,161 @@ export default function App({ isSignedIn, wallet, isDeployed }) {
                             <></>
                           )}
                         </div>
-                        {/* <div>
-                          {education.length > 0 ? (
-                            education.map((el) => {
-                              <div className="section_list_item">
-                                <div className="left">
-                                  <div className="list_bold">{el.school}</div>
-                                </div>
-                              </div>;
-                            })
-                          ) : (
-                            <></>
-                          )}
-                        </div> */}
                       </div>
                     </div>
                   </div>
+                  <Accordion>
+                    <AccordionItem header="Modify Resume">
+                      <Accordion>
+                        <AccordionItem style={{ padding: "5px" }} header="Change First Name">
+                          <form onSubmit={changeFirstName}>
+                            <label className="modify_label" for="newfirstname">
+                              First Name
+                            </label>
+                            <input className="modify_input" type="text" id="newfirstname" />
+                            <div>
+                              <button className="modify_button">
+                                <span>Submit</span>
+                                <div className="loader"></div>
+                              </button>
+                            </div>
+                          </form>
+                        </AccordionItem>
+                        <AccordionItem style={{ padding: "5px" }} header="Change Last Name">
+                          <form onSubmit={changeLastName}>
+                            <label className="modify_label" for="newlastname">
+                              Last Name
+                            </label>
+                            <input className="modify_input" type="text" id="newlastname" />
+                            <div>
+                              <button className="modify_button">
+                                <span>Submit</span>
+                                <div className="loader"></div>
+                              </button>
+                            </div>
+                          </form>
+                        </AccordionItem>
+                        <AccordionItem style={{ padding: "5px" }} header="Change Email">
+                          <form onSubmit={changeEmail}>
+                            <label className="modify_label" for="newemail">
+                              Email
+                            </label>
+                            <input className="modify_input" type="text" id="newemail" />
+                            <div>
+                              <button className="modify_button">
+                                <span>Submit</span>
+                                <div className="loader"></div>
+                              </button>
+                            </div>
+                          </form>
+                        </AccordionItem>
+                        <AccordionItem style={{ padding: "5px" }} header="Change Phone number">
+                          <form onSubmit={changePhone}>
+                            <label className="modify_label" for="newphone">
+                              Phone number
+                            </label>
+                            <input className="modify_input" type="text" id="newphone" />
+                            <div>
+                              <button className="modify_button">
+                                <span>Submit</span>
+                                <div className="loader"></div>
+                              </button>
+                            </div>
+                          </form>
+                        </AccordionItem>
+                        <AccordionItem style={{ padding: "5px" }} header="Add Work experience">
+                          <form onSubmit={addExperience}>
+                            <div>
+                              <div style={{ display: "flex", alignItems: "center" }}>
+                                <label style={{ width: "15%", textAlign: "start" }} className="modify_label" for="company">
+                                  Company
+                                </label>
+                                <input className="modify_input_long" type="text" id="company" />
+                              </div>
+                              <div style={{ display: "flex", alignItems: "center" }}>
+                                <label style={{ width: "15%", textAlign: "start" }} className="modify_label" for="position">
+                                  Position
+                                </label>
+                                <input className="modify_input_long" type="text" id="position" />
+                              </div>
+                              <div style={{ display: "flex", alignItems: "center" }}>
+                                <label style={{ width: "15%", textAlign: "start" }} className="modify_label" for="location">
+                                  Location
+                                </label>
+                                <input className="modify_input_long" type="text" id="location" />
+                              </div>
+                              <div style={{ display: "flex", alignItems: "center" }}>
+                                <label style={{ width: "15%", textAlign: "start" }} className="modify_label" for="description">
+                                  Description
+                                </label>
+                                <input className="modify_input_long" type="text" id="description" />
+                              </div>
+                            </div>
+                            <div>
+                              <label style={{ width: "50%", textAlign: "start" }} className="modify_label" for="startdate">
+                                Start Date
+                              </label>
+                              <DatePicker selected={startDate} onChange={updateStartDate} />
+                            </div>
+                            <div style={{ marginTop: "10px" }}>
+                              <label style={{ width: "50%", textAlign: "start" }} className="modify_label" for="startdate">
+                                End Date
+                              </label>
+                              <DatePicker selected={endDate} onChange={updateEndDate} />
+                            </div>
+                            <div>
+                              <button className="modify_button">
+                                <span>Submit</span>
+                                <div className="loader"></div>
+                              </button>
+                            </div>
+                          </form>
+                        </AccordionItem>
+                        <AccordionItem style={{ padding: "5px" }} header="Add Education">
+                          <form onSubmit={addEducation}>
+                            <div>
+                              <div style={{ display: "flex", alignItems: "center" }}>
+                                <label style={{ width: "15%", textAlign: "start" }} className="modify_label" for="school">
+                                  School
+                                </label>
+                                <input className="modify_input_long" type="text" id="school" />
+                              </div>
+                              <div style={{ display: "flex", alignItems: "center" }}>
+                                <label style={{ width: "15%", textAlign: "start" }} className="modify_label" for="degree">
+                                  Degree
+                                </label>
+                                <input className="modify_input_long" type="text" id="degree" />
+                              </div>
+                              <div style={{ display: "flex", alignItems: "center" }}>
+                                <label style={{ width: "15%", textAlign: "start" }} className="modify_label" for="fieldofstudy">
+                                  Field of study
+                                </label>
+                                <input className="modify_input_long" type="text" id="fieldofstudy" />
+                              </div>
+                            </div>
+                            <div>
+                              <label style={{ width: "50%", textAlign: "start" }} className="modify_label" for="startdate">
+                                Start Date
+                              </label>
+                              <DatePicker selected={startDate} onChange={updateStartDate} />
+                            </div>
+                            <div style={{ marginTop: "10px" }}>
+                              <label style={{ width: "50%", textAlign: "start" }} className="modify_label" for="startdate">
+                                End Date
+                              </label>
+                              <DatePicker selected={endDate} onChange={updateEndDate} />
+                            </div>
+                            <div>
+                              <button className="modify_button">
+                                <span>Submit</span>
+                                <div className="loader"></div>
+                              </button>
+                            </div>
+                          </form>
+                        </AccordionItem>
+                      </Accordion>
+                    </AccordionItem>
+                  </Accordion>
                 </div>
               ) : (
                 <>
@@ -282,14 +507,13 @@ export default function App({ isSignedIn, wallet, isDeployed }) {
           </div>
 
           <div className="column side">
-            <h1>asdasdsad</h1>
-            <h1>asdasdsad</h1>
-            <h1>asdasdsad</h1>
-            <h1>asdasdsad</h1>
-            <h1>asdasdsad</h1>
+            <h1 style={{ padding: "20px" }}>Your Badges</h1>
+            <div style={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "25px" }}>
+              <img src={badges} alt="Logo" style={{ width: "100%", height: "100%", borderRadius: "5%", border: "2px solid black" }} />;
+            </div>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

@@ -1,5 +1,4 @@
 import React from "react";
-import logo from "./assets/logo.png";
 import mark from "./assets/metamark.png";
 import wallet from "./assets/wallet.png";
 import checkbox from "./assets/checked-checkbox.png";

@@ -1,7 +1,7 @@
 /* A helper file that simplifies using the wallet selector */
 
 // near api js
-import { providers, transactions } from "near-api-js";
+import { providers, transactions, actions } from "near-api-js";
 
 // wallet selector UI
 import "@near-wallet-selector/modal-ui/styles.css";
@@ -19,132 +19,126 @@ const NO_DEPOSIT = "0";
 
 // Wallet that simplifies using the wallet selector
 export class Wallet {
-	walletSelector;
-	wallet;
-	network;
-	createAccessKeyFor;
+  walletSelector;
+  wallet;
+  network;
+  createAccessKeyFor;
 
-	constructor({ createAccessKeyFor = undefined, network = "testnet" }) {
-		// Login to a wallet passing a contractId will create a local
-		// key, so the user skips signing non-payable transactions.
-		// Omitting the accountId will result in the user being
-		// asked to sign all transactions.
-		this.createAccessKeyFor = createAccessKeyFor;
-		this.network = "testnet";
-	}
+  constructor({ createAccessKeyFor = undefined, network = "testnet" }) {
+    // Login to a wallet passing a contractId will create a local
+    // key, so the user skips signing non-payable transactions.
+    // Omitting the accountId will result in the user being
+    // asked to sign all transactions.
+    this.createAccessKeyFor = createAccessKeyFor;
+    this.network = "testnet";
+  }
 
-	// To be called when the website loads
-	async startUp() {
-		this.walletSelector = await setupWalletSelector({
-			network: this.network,
-			modules: [
-				setupMyNearWallet({ iconUrl: MyNearIconUrl }),
-				setupLedger({ iconUrl: LedgerIconUrl }),
-			],
-		});
+  // To be called when the website loads
+  async startUp() {
+    this.walletSelector = await setupWalletSelector({
+      network: this.network,
+      modules: [setupMyNearWallet({ iconUrl: MyNearIconUrl }), setupLedger({ iconUrl: LedgerIconUrl })],
+    });
 
-		const isSignedIn = this.walletSelector.isSignedIn();
+    const isSignedIn = this.walletSelector.isSignedIn();
 
-		if (isSignedIn) {
-			this.wallet = await this.walletSelector.wallet();
-			this.accountId =
-				this.walletSelector.store.getState().accounts[0].accountId;
-		}
+    if (isSignedIn) {
+      this.wallet = await this.walletSelector.wallet();
+      this.accountId = this.walletSelector.store.getState().accounts[0].accountId;
+      this.createAccessKeyFor = this.accountId;
+    }
 
-		return isSignedIn;
-	}
+    return isSignedIn;
+  }
 
-	// Sign-in method
-	signIn() {
-		const description = "Please select a wallet to sign in.";
-		const modal = setupModal(this.walletSelector, {
-			contractId: this.createAccessKeyFor,
-			description,
-		});
-		modal.show();
-	}
+  // Sign-in method
+  signIn() {
+    const description = "Please select a wallet to sign in.";
+    const modal = setupModal(this.walletSelector, {
+      contractId: this.createAccessKeyFor,
+      description,
+    });
 
-	// Sign-out method
-	signOut() {
-		this.wallet.signOut();
-		this.wallet = this.accountId = this.createAccessKeyFor = null;
-		window.location.replace(window.location.origin + window.location.pathname);
-	}
+    modal.show();
+  }
 
-	// Make a read-only call to retrieve information from the network
-	async viewMethod(contractId, method, args = {}) {
-		const { network } = this.walletSelector.options;
-		const provider = new providers.JsonRpcProvider({ url: network.nodeUrl });
+  // Sign-out method
+  signOut() {
+    this.wallet.signOut();
+    this.wallet = this.accountId = this.createAccessKeyFor = null;
+    window.location.replace(window.location.origin + window.location.pathname);
+  }
 
-		let res = await provider.query({
-			request_type: "call_function",
-			account_id: contractId,
-			method_name: method,
-			args_base64: Buffer.from(JSON.stringify(args)).toString("base64"),
-			finality: "optimistic",
-		});
-		return JSON.parse(Buffer.from(res.result).toString());
-	}
+  // Make a read-only call to retrieve information from the network
+  async viewMethod(contractId, method, args = {}) {
+    const { network } = this.walletSelector.options;
+    const provider = new providers.JsonRpcProvider({ url: network.nodeUrl });
 
-	// Call a method that changes the contract's state
-	async callMethod(
-		contractId,
-		method,
-		args = {},
-		gas = THIRTY_TGAS,
-		deposit = NO_DEPOSIT
-	) {
-		// Sign a transaction with the "FunctionCall" action
-		return await this.wallet.signAndSendTransaction({
-			signerId: this.accountId,
-			receiverId: contractId,
-			actions: [
-				{
-					type: "FunctionCall",
-					params: {
-						methodName: method,
-						args,
-						gas,
-						deposit,
-					},
-				},
-			],
-		});
-	}
+    let res = await provider.query({
+      request_type: "call_function",
+      account_id: contractId,
+      method_name: method,
+      args_base64: Buffer.from(JSON.stringify(args)).toString("base64"),
+      finality: "optimistic",
+    });
+    return JSON.parse(Buffer.from(res.result).toString());
+  }
 
-	async deploy(wasm) {
-		const wasmBytes = await wasm.arrayBuffer();
-		const wasmBase64 = Buffer.from(wasmBytes).toString("base64");
+  // Call a method that changes the contract's state
+  async callMethod(contractId, method, args = {}, gas = THIRTY_TGAS, deposit = NO_DEPOSIT) {
+    // Sign a transaction with the "FunctionCall" action
+    return await this.wallet.signAndSendTransaction({
+      signerId: this.accountId,
+      receiverId: contractId,
+      actions: [
+        {
+          type: "FunctionCall",
+          params: {
+            methodName: method,
+            args,
+            gas,
+            deposit,
+          },
+        },
+      ],
+    });
+  }
 
-		return await this.wallet.signAndSendTransaction({
-			signerId: this.accountId,
-			receiverId: this.accountId,
-			actions: [
-				{
-					type: "DeployContract",
-					params: {
-						code: wasmBase64,
-					},
-				},
-			],
-		});
+  async deploy(wasm) {
+    const wasmBytes = await wasm.arrayBuffer();
+    // const wasmBase64 = Buffer.from(wasmBytes).toString("base64");
+    const wasmBase64 = new Uint8Array(wasmBytes);
 
-		// const deployAction = [transactions.deployContract(wasmBase64)];
-		// console.log(deployAction);
+    return await this.wallet.signAndSendTransaction({
+      // signerId: this.accountId,
+      receiverId: this.accountId,
+      actions: [
+        {
+          type: "DeployContract",
+          params: {
+            code: wasmBase64,
+          },
+        },
+      ],
+    });
 
-		// return await this.wallet.signAndSendTransaction({
-		// 	receiverId: this.accountId,
-		// 	actions: deployAction,
-		// });
-	}
+    // const deployAction = [transactions.functionCall("deployContract", { code: wasmBase64 }, NO_DEPOSIT, THIRTY_TGAS)];
+    // // const deployAction = [transactions.deployContract(wasmBase64)];
+    // console.log(deployAction);
 
-	// Get transaction result from the network
-	async getTransactionResult(txhash) {
-		const { network } = this.walletSelector.options;
-		const provider = new providers.JsonRpcProvider({ url: network.nodeUrl });
+    // return await this.wallet.signAndSendTransaction({
+    //   receiverId: this.accountId,
+    //   deployAction,
+    // });
+  }
 
-		// Retrieve transaction result from the network
-		const transaction = await provider.txStatus(txhash, "unnused");
-		return providers.getTransactionLastResult(transaction);
-	}
+  // Get transaction result from the network
+  async getTransactionResult(txhash) {
+    const { network } = this.walletSelector.options;
+    const provider = new providers.JsonRpcProvider({ url: network.nodeUrl });
+
+    // Retrieve transaction result from the network
+    const transaction = await provider.txStatus(txhash, "unnused");
+    return providers.getTransactionLastResult(transaction);
+  }
 }
