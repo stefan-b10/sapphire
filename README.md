@@ -1,100 +1,70 @@
-near-blank-project
-==================
+<p style="padding-top: 30px;" align="center">
+  <img src="https://assets.metaintro.com/images/logos/white-mark.png" alt="metaintro banner Logo" />
+</p>
 
-This app was initialized with [create-near-app]
+<br />
+<div align="center"><strong>metaintro</strong></div>
+<div align="center">The professional resume wallet</div>
+<br />
+<div align="center">
+<a href="https://www.metaintro.com">Website</a> 
+<span> · </span>
+<a href="https://discord.gg/metaintro">Discord</a> 
+<span> · </span>
+<a href="https://twitter.com/metaintro">Twitter</a>
+</div>
 
+# The Professional Resume Wallet on Near Protocol
 
-Quick Start
-===========
-
-If you haven't installed dependencies during setup:
-
-    npm install
-
-
-Build and deploy your contract to TestNet with a temporary dev account:
-
-    npm run deploy
-
-Test your contract:
-
-    npm test
-
-If you have a frontend, run `npm start`. This will run a dev server.
+This is a POC app that can connect to a Near wallet and deploy a Resume smart contract on chain and modify it using NEAR SDK-JS.
 
 
-Exploring The Code
-==================
+## Installation
+1. Clone this repository :
 
-1. The smart-contract code lives in the `/contract` folder. See the README there for
-   more info. In blockchain apps the smart contract is the "backend" of your app.
-2. The frontend code lives in the `/frontend` folder. `/frontend/index.html` is a great
-   place to start exploring. Note that it loads in `/frontend/index.js`,
-   this is your entrypoint to learn how the frontend connects to the NEAR blockchain.
-3. Test your contract: `npm test`, this will run the tests in `integration-tests` directory.
+    ```bash
+   git clone <repository>
+    ```
 
+2. Open a terminal in cloned folder and install dependecies :
 
-Deploy
-======
+    ```bash
+   npm install
+    ```
 
-Every smart contract in NEAR has its [own associated account][NEAR accounts]. 
-When you run `npm run deploy`, your smart contract gets deployed to the live NEAR TestNet with a temporary dev account.
-When you're ready to make it permanent, here's how:
+## Run the app
+1. Deploy a Resume smart contract on Near Protocol using Near CLI
 
+   Login to a Near wallet (you will be redirected to NEAR Wallet requesting full access to your account)
 
-Step 0: Install near-cli (optional)
--------------------------------------
+    ```bash
+    near login
+    ```
 
-[near-cli] is a command line interface (CLI) for interacting with the NEAR blockchain. It was installed to the local `node_modules` folder when you ran `npm install`, but for best ergonomics you may want to install it globally:
+   Select which account you would like an access key to, you will be asked to confirm this authorization by entering the account name.
 
-    npm install --global near-cli
+   After succesfully login, deploy and initialize your new Resume smart contract:
+   ```bash
+   near deploy --accountID <yourAccount.testnet> --wasmFile frontend/assets/resume.wasm --initFunctions init --initArgs '{"firstName":"<yourFirstName>", "lastName":"<yourLastName>"}'
+   ```
 
-Or, if you'd rather use the locally-installed version, you can prefix all `near` commands with `npx`
+2. Start the app
 
-Ensure that it's installed with `near --version` (or `npx near --version`)
+   ```bash
+   npm run start
+   ```
 
+   Once the app started you can login with a Near wallet (the wallet that has deployed a Resume smart contract).
+   
+   ![2023-08-14_16-59](https://github.com/stefan-b10/sapphire/assets/72396423/1c60a30a-e5db-43be-919d-a403c43a513a)
 
-Step 1: Create an account for the contract
-------------------------------------------
+Head over to ``Modify Resume`` to change/add informations on your Resume.
 
-Each account on NEAR can have at most one contract deployed to it. If you've already created an account such as `your-name.testnet`, you can deploy your contract to `near-blank-project.your-name.testnet`. Assuming you've already created an account on [NEAR Wallet], here's how to create `near-blank-project.your-name.testnet`:
+The available fields on the Resume to add/change at the moment are:
 
-1. Authorize NEAR CLI, following the commands it gives you:
-
-      near login
-
-2. Create a subaccount (replace `YOUR-NAME` below with your actual account name):
-
-      near create-account near-blank-project.YOUR-NAME.testnet --masterAccount YOUR-NAME.testnet
-
-Step 2: deploy the contract
----------------------------
-
-Use the CLI to deploy the contract to TestNet with your account ID.
-Replace `PATH_TO_WASM_FILE` with the `wasm` that was generated in `contract` build directory.
-
-    near deploy --accountId near-blank-project.YOUR-NAME.testnet --wasmFile PATH_TO_WASM_FILE
-
-
-Step 3: set contract name in your frontend code
------------------------------------------------
-
-Modify the line in `src/config.js` that sets the account name of the contract. Set it to the account id you used above.
-
-    const CONTRACT_NAME = process.env.CONTRACT_NAME || 'near-blank-project.YOUR-NAME.testnet'
-
-
-
-Troubleshooting
-===============
-
-On Windows, if you're seeing an error containing `EPERM` it may be related to spaces in your path. Please see [this issue](https://github.com/zkat/npx/issues/209) for more details.
-
-
-  [create-near-app]: https://github.com/near/create-near-app
-  [Node.js]: https://nodejs.org/en/download/package-manager/
-  [jest]: https://jestjs.io/
-  [NEAR accounts]: https://docs.near.org/concepts/basics/account
-  [NEAR Wallet]: https://wallet.testnet.near.org/
-  [near-cli]: https://github.com/near/near-cli
-  [gh-pages]: https://github.com/tschaub/gh-pages
+- First Name    
+- Last Name
+- Email
+- Phone number
+- Work experience
+- Education
